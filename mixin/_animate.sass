@@ -1,0 +1,37 @@
+// *****************************
+// * mixin > animate
+// *****************************
+
+=transform($transform)
+    transform: $transform
+
+=transition($transition, $duration: $_sec, $timing: $_easing )
+    // $_sec, $_easing
+    // -> _var.sass
+    transition: $transition $duration $timing
+
+=cubicEaseOut($duration: 0.4s)//参考：http://www.knockknock.jp/archives/184(cubicEaseInOut)
+    transition: transform $duration cubic-bezier(0.215, 0.61, 0.355, 1)
+
+=keyframes($name)
+    @-webkit-keyframes #{$name}
+        @content
+    @-moz-keyframes #{$name}
+        @content
+    @-ms-keyframes #{$name}
+        @content
+    @keyframes #{$name}
+        @content
+
+=keyframesSet($name, $duration)
+    animation-name: $name
+    animation-timing-function: $_easing // -> _var.sass
+    animation-iteration-count: infinite
+    animation-duration: $duration
+
+=keyframesSetOne($name, $duration, $delay)
+    animation-name: $name
+    // animation-timing-function: ease-in-out
+    animation-fill-mode: both
+    animation-duration: $duration
+    animation-delay: $delay

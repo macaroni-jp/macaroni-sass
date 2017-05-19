@@ -1,0 +1,94 @@
+// *****************************
+// * base
+// *****************************
+// タグに直接スタイル設定を行う場合に記述
+
+html
+    +fz($pc: $_fontsize, $sp: $_fontsize-sp)
+    height: 100%
+
+body
+    font-size: 10px
+    font-smoothing: antialiased
+    height: 100%
+    color: $_blk
+
+main, article, aside, details, figcaption, figure, footer, header, hgroup, nav, section
+    display: block
+
+h1, h2, h3, h4, h5, ul, dl
+    font-weight: normal
+    margin: 0
+    padding: 0
+
+ul, ol
+    padding: 0
+    margin: 0
+    list-style-type: none
+    overflow: hidden
+
+a
+    +fz($pc: $_fontsize, $sp: $_fontsize-sp)
+    color: $_blk
+    outline: 0
+    text-decoration: none
+
+    &:hover
+        img
+            +opacity(0.6)
+
+    img
+        +transition($transition: opacity)
+
+p, dt, dd, li
+    +fz($pc: $_fontsize, $sp: $_fontsize-sp)
+    margin: 0 0 .5em 0
+    padding: 0
+
+    a, span
+        font-size: inherit
+
+table
+    width: 100%
+    border-collapse: collapse
+
+    th, td
+        font-size: $_fontsize
+        padding: 0.5rem 1rem
+
+        p, dt, dd, li, a, span
+            font-size: inherit
+
+
+small
+    font-size: $_fontsize_small
+
+*
+    &:before, &:after
+        display: inline-block
+
+// //一号
+// h1
+//     font-size: ($_fontsize * 2 * 2 * .7) + px
+//     margin-bottom: ($_fontsize * 10 * 3) + px
+//     // font-weight: 700
+
+// //二号
+// h2
+//     font-size: ($_fontsize * 2 * .7) + px
+//     margin-bottom: ($_fontsize * 10 * 2) + px
+//     // font-weight: 700
+
+// //三号
+// h3
+//     font-size: ($_fontsize * 0.33 * 8 * .7 ) + px
+//     margin-bottom: ($_fontsize * 10) + ($_fontsize * 10 / 2 ) + px
+
+// //四号
+// h4
+//     font-size: ($_fontsize * 1.25 * .7) + px
+//     margin-bottom: ($_fontsize * 10) + px
+
+// //五号
+// p
+//     font-size: $_fontsize + px

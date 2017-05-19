@@ -1,0 +1,23 @@
+// *****************************
+// * mixin > mediaquery
+// *****************************
+
+=min-width($min-width)
+    @media screen and (min-width: $min-width)
+        @content
+
+=max-width($max-width)
+    @media screen and (max-width: $max-width)
+        @content
+
+=mm($min-width, $max-width)
+    @media screen and (min-width : $min-width) and (max-width : $max-width)
+        @content
+
+// =max-d-Width($max-d-Width)
+//     @media only screen and (max-device-width : $large-break)
+//         @content
+
+// =mm-d($minDWidth, $max-d-Width)
+//     @media only screen and (min-device-width : $minDWidth) and (max-device-width : $max-d-Width)
+//         @content

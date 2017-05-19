@@ -1,0 +1,572 @@
+// *****************************
+// * mixin > layout
+// *****************************
+
+// ********************* view size
+
+=area($ms: auto, $ms-sp: auto, $type: fix)
+    //レスポンシブ設定。#containerに設定する。HTMLの設定 → meta(name='viewport' content='width=device-width')
+    //ウインドウを一定以上縮小させた場合やタブレットの縦横でレイアウトを変更させない場合に使用。
+    @if $type != min
+        width: auto
+        margin-left: $ms-sp
+        margin-right: $ms-sp
+
+    @if $type == min
+
+        +min-width($_small-break + 1px)
+            min-width: $_large-break
+
+    @elseif $type == fix
+
+        +min-width($_small-break + 1px)
+            width: $_fix-width
+            margin-left: auto
+            margin-right: auto
+
+    @elseif $type == liq
+
+        // @if $_fix-width + $ms * 2 > $_large-break
+
+        //     +mm($_small-break + 1px, $_large-break - $ms * 2)
+        //         width: $_fix-width
+        //         margin-left: auto
+        //         margin-right: auto
+
+        //     +min-width(($_large-break - $ms * 2) + 1px )
+        //         width: auto
+        //         margin-left: $ms
+        //         margin-right: $ms
+
+        // @else
+
+        +mm($_small-break + 1px, $_large-break)
+            width: $_fix-width
+            margin-left: auto
+            margin-right: auto
+
+        +min-width($_large-break + 1px)
+            margin-left: $ms
+            margin-right: $ms
+
+    @if $type == flex
+
+        // @if $_fix-width + $ms * 2 > $_large-break
+
+        //     +mm($_small-break + 1px, $_large-break - $ms * 2)
+        //         width: $_fix-width
+        //         margin-left: auto
+        //         margin-right: auto
+
+        //     +mm(($_large-break - $ms * 2) + 1px, $_max-width + $ms * 2 )
+        //         width: auto
+        //         margin-left: $ms
+        //         margin-right: $ms
+
+        // @else
+
+        +mm($_small-break + 1px, $_large-break)
+            width: $_fix-width
+            margin-left: auto
+            margin-right: auto
+
+        +mm($_large-break + 1px, $_max-width + $ms * 2 )
+            width: auto
+            margin-left: $ms
+            margin-right: $ms
+
+        +min-width( ($_max-width + $ms * 2) + 1px)
+            max-width: $_max-width
+            margin-left: auto
+            margin-right: auto
+
+=min
+    +area($type: min)
+
+=fix
+    +area($type: fix)
+
+=fix-sp-ms0
+    +area($ms-sp: 0, $type: fix)
+
+=flex
+    +area($ms: $_side-margin, $ms-sp: $_side-margin-sp, $type: flex)
+
+=flex-sp-ms0
+    +area($ms: $_side-margin, $ms-sp: 0, $type: flex)
+
+=liq
+    +area($ms: $_side-margin, $ms-sp: $_side-margin-sp, $type: liq)
+
+=liq-sp-ms0
+    +area($ms: $_side-margin, $ms-sp: 0, $type: liq)
+
+// ---------- 2clolumn
+
+=main
+    width: auto
+
+    +min-width($_small-break + 1px)
+        width: $_main-width
+        min-height: $_min-height
+
+=sub
+    width: auto
+
+    +min-width($_small-break + 1px)
+        width: $_sub-width
+
+// ********************* colomn
+
+// デフォルト設定は.l-half
+=grid-per($col: 2, $col-sp: 1, $large: 1, $margin: $_gutter-per, $margin-sp: 0)
+    box-sizing: border-box
+    width: ( 100% - ( $margin  * ($col - 1) ) ) * $large / $col  + ($margin  * ($large - 1))
+    margin-right: $margin
+
+    @if $col == $col-sp
+        &:nth-of-type(#{$col}n)
+            margin-right: 0
+
+    @else
+        +max-width($_small-break)
+            width: (100% - $margin-sp  * ($col-sp - 1) ) / $col-sp
+            margin-right: $margin-sp  * ($col-sp - 1)
+
+        &:nth-of-type(#{$col}n)
+            margin-right: 0
+
+            +max-width($_small-break)
+                margin-right: $margin-sp
+
+        &:last-of-type
+            margin-right: 0
+
+        @if $col-sp > 1
+
+            $same: $col * $col-sp
+
+            &:nth-of-type(#{$col}n)
+                margin-right: 0
+
+                +max-width($_small-break)
+                    margin-right: $margin-sp
+
+            &:nth-of-type(#{$col-sp}n)
+                // margin-right: 0
+
+                +max-width($_small-break)
+                    margin-right: 0
+
+=i-2
+    +grid-per
+
+=i-2-all
+    +grid-per($col: 2, $col-sp: 2)
+
+=i-2-fit
+    +grid-per($col: 2, $col-sp: 1, $margin: 0)
+
+=i-2-fit-all
+    +grid-per($col: 2, $col-sp: 2, $margin: 0)
+
+=i-3
+    +grid-per($col: 3)
+
+=i-3-sp-half
+    +grid-per($col: 3, $col-sp: 2, $margin-sp: $_gutter-per)
+
+=i-3-fit
+    +grid-per($col: 3, $margin: 0)
+
+=i-3-fit-sp-half
+    +grid-per($col: 3, $col-sp: 2, $margin: 0)
+
+=ii-3
+    +grid-per($col: 3, $large: 2)
+
+=ii-3-fit
+    +grid-per($col: 3, $large: 2, $margin: 0)
+
+=ii-3-fit-sp-half
+    +grid-per($col: 3, $col-sp: 2, $large: 2, $margin: 0)
+
+=i-4
+    +grid-per($col: 4)
+
+=i-4-sp-half
+    +grid-per($col: 4, $col-sp: 2, $margin-sp: $_gutter-per)
+
+=i-4-fit
+    +grid-per($col: 4, $margin: 0)
+
+=i-4-fit-sp-half
+    +grid-per($col: 4, $col-sp: 2, $margin: 0)
+
+=ii-4
+    +grid-per($col: 4, $large: 2)
+
+=iii-4
+    +grid-per($col: 4, $large: 3)
+
+=iii-4-fit
+    +grid-per($col: 4, $large: 3, $margin: 0)
+
+=iii-4-fit-sp-half
+    +grid-per($col: 4, $col-sp: 2, $large: 3, $margin: 0)
+
+=i-5
+    +grid-per($col: 5)
+
+=i-5-sp-half
+    +grid-per($col: 5, $col-sp: 2, $margin-sp: $_gutter-per)
+
+=i-5-fit
+    +grid-per($col: 5, $col-sp: 1, $margin: 0)
+
+=i-5-fit-sp-half
+    +grid-per($col: 5, $col-sp: 2, $margin: 0)
+
+=ii-5
+    +grid-per($col: 5, $large: 2)
+
+=ii-5-fit
+    +grid-per($col: 5, $large: 2, $margin: 0)
+
+=ii-5-fit-sp-half
+    +grid-per($col: 5, $col-sp: 2, $large: 2, $margin: 0)
+
+=iii-5
+    +grid-per($col: 5, $large: 3)
+
+=iii-5-fit
+    +grid-per($col: 5, $large: 3, $margin: 0)
+
+=iii-5-fit-sp-half
+    +grid-per($col: 5, $col-sp: 2, $large: 3, $margin: 0)
+
+=iiii-5
+    +grid-per($col: 5, $large: 4)
+
+=iiii-5-fit
+    +grid-per($col: 5, $large: 4, $margin: 0)
+
+=iiii-5-fit-sp-half
+    +grid-per($col: 5, $col-sp: 2, $large: 4, $margin: 0)
+
+// mobile first
+// =grid-per($col: 1, $col-pc: 2, $margin: 0%, $margin-pc: 4%)
+
+//     @if $col == $col-pc
+//         width: (100% - $margin  * ($col - 1) ) / $col
+//         margin-right: $margin
+
+//         &:nth-of-type(#{$col}n)
+//             margin-right: 0
+
+//     @else
+//         width: (100% - $margin  * ($col - 1) ) / $col
+//         margin-right: $margin  * ($col - 1)
+
+//         &:nth-of-type(#{$col}n)
+//             margin-right: 0
+
+//         +min-width($_small-break + 1px)
+//             // width: percentage($col-pc/12)
+//             width: (100% - $margin-pc  * ($col-pc - 1) ) / $col-pc
+//             margin-right: $margin-pc
+
+//         &:nth-of-type(#{$col-pc}n)
+//             margin-right: $margin
+
+//             +min-width($_small-break + 1px)
+//                 margin-right: 0
+
+// ********************* display
+
+=bl
+    display: block
+
+    +max-width($_small-break)
+        display: inline
+
+=bl-sp
+    display: inline
+
+    +max-width($_small-break)
+        display: block
+
+=bl-all
+    display: block
+
+=ib
+    display: inline-block
+
+=only-pc
+    +max-width($_small-break)
+        display: none
+
+=only-sp
+    display: none
+
+    +max-width($_small-break)
+        display: block
+
+=only-sp-i
+    display: none
+
+    +max-width($_small-break)
+        display: inline-block
+
+// ********************* overflow
+
+=oh
+    overflow: hidden
+
+=ov
+    overflow: visible
+
+// ********************* replace
+
+=rep
+    text-indent: 100%
+    white-space: nowrap
+    overflow: hidden
+    display: block
+
+// ********************* fit
+
+=fit
+    width: 100%
+    height: auto
+
+=fit-sp
+    height: auto
+
+    +max-width($_small-break)
+        width: 100%
+
+=fit-max
+    max-width: 100%
+    height: auto
+
+=fit-h
+    width: auto
+    height: 100%
+
+// ********************* float
+
+=float-l
+    float: left
+
+    +max-width($_small-break)
+        float: none
+        // margin-left: 0
+        // margin-right: 0
+
+=float-r($del: false)
+    float: right
+
+    @if $del
+        +max-width($_small-break)
+            display: none
+    @else
+        +max-width($_small-break)
+            float: none
+            // margin-left: 0
+            // margin-right: 0
+
+// mobile first
+// =floatL
+//     float: none
+
+//     +max-width($_small-break)
+//         margin-left: 0
+//         margin-right: 0
+
+//     +min-width($_small-break + 1px)
+//         float: left
+
+// =floatR($del: false)
+//     @if $del
+//         display: none
+//     @else
+//         float: none
+
+//     +max-width($_small-break)
+//         margin-left: 0
+//         margin-right: 0
+
+//     +min-width($_small-break + 1px)
+//         float: right
+
+// ********************* clear
+
+=clear
+    &:after
+        content: ''
+        display: table
+        clear: both
+
+// ********************* position
+
+=por
+    position: relative
+
+=poa
+    position: absolute
+
+=poa-pc
+
+    +min-width($_small-break + 1px)
+        position: absolute
+
+=pof
+    position: fixed
+
+=pof-pc
+    position: fixed
+
+    +max-width($_small-break)
+        position: static
+
+=poa-center
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    margin: auto
+
+=poa-center-sp
+
+    +max-width($_small-break)
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+        margin: auto
+
+=poa-hcenter-t
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    margin: auto
+
+=poa-hcenter-b
+    position: absolute
+    left: 0
+    right: 0
+    bottom: 0
+    margin: auto
+
+=poa-vcenter-l
+    position: absolute
+    top: 0
+    bottom: 0
+    margin: auto
+
+=poa-vcenter-r
+    position: absolute
+    top: 0
+    bottom: 0
+    right: 0
+    margin: auto
+
+// ********************* margin
+
+=ms($pc: 0, $sp: null)
+    margin-left: $pc +rem
+    margin-right: $pc +rem
+
+    @if $sp
+        +max-width($_small-break)
+            margin-left: $sp +rem
+            margin-right: $sp +rem
+
+=mt($pc: 0, $sp: null)
+    margin-top: $pc +rem
+
+    @if $sp
+        +max-width($_small-break)
+            margin-top: $sp +rem
+
+=mr($pc: 0, $sp: null)
+    margin-right: $pc +rem
+
+    @if $sp
+        +max-width($_small-break)
+            margin-right: $sp +rem
+
+=mb($pc: 0, $sp: null)
+    margin-bottom: $pc +rem
+
+    @if $sp
+        +max-width($_small-break)
+            margin-bottom: $sp +rem
+
+=ml($pc: 0, $sp: null)
+    margin-left: $pc +rem
+
+    @if $sp
+        +max-width($_small-break)
+            margin-left: $sp +rem
+
+// ********************* padding
+
+=pd($pc: 0, $sp: null)
+    padding: $pc +rem
+
+    @if $sp
+        +max-width($_small-break)
+            padding: $sp +rem
+
+=pds($pc: 0, $sp: null)
+    padding-left: $pc +rem
+    padding-right: $pc +rem
+
+    @if $sp
+        +max-width($_small-break)
+            padding-left: $sp +rem
+            padding-right: $sp +rem
+
+=pdt($pc: 0, $sp: null)
+    padding-top: $pc +rem
+
+    @if $sp
+        +max-width($_small-break)
+            padding-top: $sp +rem
+
+=pdr($pc: 0, $sp: null)
+    padding-right: $pc +rem
+
+    @if $sp
+        +max-width($_small-break)
+            padding-right: $sp +rem
+
+=pdb($pc: 0, $sp: null)
+    padding-bottom: $pc +rem
+
+    @if $sp
+        +max-width($_small-break)
+            padding-bottom: $sp +rem
+
+=pdl($pc: 0, $sp: null)
+    padding-left: $pc +rem
+
+    @if $sp
+        +max-width($_small-break)
+            padding-left: $sp +rem
+
+// 無茶だった
+// $pos-array: top, right, bottom, left
+// @each $margin-pos in $pos-array
+//     =margin-#{$margin-pos}($pc: 0, $sp: null)
+//         margin-#{$margin-pos}: $pc +rem
+
+//         @if $sp
+//             +max-width($_small-break)
+//                 margin-#{$margin-pos}: $sp +rem
+

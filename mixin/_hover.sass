@@ -1,0 +1,42 @@
+// *****************************
+// * mixin > hover
+// *****************************
+
+=hover($type: null, $color: $_blk, $duration: 0.2s, $timing: ease-in)
+
+    @if $type == color
+        transition: color $duration $timing
+
+    @elseif $type == bg
+        transition: background-color $duration $timing
+
+    @elseif $type == slide
+        +por
+
+        span
+            +por
+            z-index: 1
+
+        &:before
+            content: ''
+            display: block
+            +poa-center
+            background-color: $color
+            +transition(transform )
+            transform: scaleY(0)
+            transform-origin: 50% 0
+
+    &:hover
+        @if $type == underline
+            text-decoration: underline
+
+        @elseif $type == color
+            color: $color
+
+        @elseif $type == bg
+            background-color: $color
+
+        @elseif $type == slide
+            &:before
+                transform: scaleY(1)
+                transform-origin: 50% 100%

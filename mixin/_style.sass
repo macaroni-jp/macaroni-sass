@@ -1,0 +1,382 @@
+// *****************************
+// * mixin > style
+// *****************************
+
+=opacity($opacity)
+    opacity: $opacity
+    $opacityIE: $opacity * 100
+    filter: alpha(opacity=$opacityIE)
+
+=border-r($radius)
+    border-radius: $radius
+
+=boxshadow($hor_ver_blur_c)
+    box-shadow: $hor_ver_blur_c
+
+// ********************* background color
+
+=bg-pri
+    background-color: $_pri
+
+=bg-sec
+    background-color: $_seco
+
+=bg-blk
+    background-color: $_blk
+
+=bg-wht
+    background-color: $_wht
+
+=bg-gry
+    background-color: $_gry
+
+=bg-lgry
+    background-color: $_lgry
+
+=bg-dgry
+    background-color: $_dgry
+
+//
+// @each $bg_color in $colors
+//     $index_key: index($colors, $bg_color)
+
+//     =bg-#{$bg_color}
+//         background-color: nth($colors-var, $index_key)
+
+// ********************* arrow
+
+=arrow($type: left, $color: $_line-color, $weight: 1)
+    position: relative
+
+    @if $type == left
+        padding-left: 1.1em
+
+        &:before
+            transform: rotate(45deg)
+            top: 0
+            left: 0
+            bottom: 0
+
+    @elseif $type == right
+        padding-right: 1em
+
+        &:before
+            transform: rotate(45deg)
+            top: 0
+            right: 0.33em
+            bottom: 0
+
+    @elseif $type == upper
+        padding-left: 1em
+
+        &:before
+            transform: rotate(-45deg)
+            top: 45%
+            left: 0
+
+    @elseif $type == lower
+        padding-left: 1em
+
+        &:before
+            transform: rotate(135deg)
+            bottom: 40%
+            left: 0
+
+    @elseif $type == back
+        padding-left: 1em
+
+        &:before
+            transform: rotate(-135deg)
+            top: 0
+            left: 0.33em
+            bottom: 0
+
+    &:before
+        content: ''
+        position: absolute
+        display: inline-block
+        width: 0.45em
+        height: 0.45em
+        border-top: $weight + px solid $color
+        border-right: $weight + px solid $color
+        margin: auto
+
+
+    // muulticlass
+
+    &.t-fwb, &.t-fw6, &.t-fw7
+        &:before
+            border-color: $_blk
+            border-width: 2px
+
+    &.t-wht
+        &:before
+            border-color: #fff
+
+    &.t-gry
+        &:before
+            border-color: $_gry
+
+    // arg
+
+    // border size
+
+    @if $weight > 1
+        &:before
+            border-color: $_blk
+            border-width: 2px
+
+    // border color
+
+    @if $color == #fff
+        &:before
+            border-color: #fff
+
+    @elseif $color == $_gry
+        &:before
+            border-color: $_gry
+
+=arrow-r
+    +arrow($type: right)
+
+=arrow-upper
+    +arrow($type: upper)
+
+=arrow-lower
+    +arrow($type: lower)
+
+=arrow-back
+    +arrow($type: back)
+
+// ********************* triangle
+
+=tri($size: $_tri-size, $color: $_pri, $pos: bottom)
+    position: relative
+
+    &:before
+        // +minWidth($smallBreak + 1px)
+        content: ""
+        position: absolute
+        display: block
+        width: 0
+        height: 0
+        border: $size solid transparent
+        // transition: .3s
+
+        @if $pos == top
+            border-bottom: $size solid #{$color}
+            left: 0
+            right: 0
+            top: ($size * -2)
+            margin: auto
+
+        @elseif $pos == right
+            border-left: $size solid #{$color}
+            top: 0
+            bottom: 0
+            right: ($size * -2)
+            margin: auto
+
+        @elseif $pos == bottom
+            border-top: $size solid #{$color}
+            left: 0
+            right: 0
+            bottom: ($size * -2)
+            margin: auto
+
+        @elseif $pos == left
+            border-right: $size solid #{$color}
+            top: 0
+            bottom: 0
+            left: ($size * -2)
+            margin: auto
+
+    @each $t_color in $colors
+        $index_key: index($colors, $t_color)
+
+        &.s-bg-#{$t_color}
+            &:before
+                @if $pos == top
+                    border-bottom: $size solid nth($colors_var, $index_key)
+
+                @elseif $pos == right
+                    border-left: $size solid nth($colors_var, $index_key)
+
+                @elseif $pos == bottom
+                    border-top: $size solid nth($colors_var, $index_key)
+
+                @elseif $pos == left
+                    border-right: $size solid nth($colors_var, $index_key)
+
+
+
+=tri-top
+    +tri($pos: top)
+
+=tri-right
+    +tri($pos: right)
+
+=tri-bottom
+    +tri($pos: bottom)
+
+=tri-left
+    +tri($pos: left)
+
+
+// ********************* btn
+
+=btn($type: false, $color: $_blk, $bgcolor: transparent, $border: false, $arrow: false, $hover: true)
+    // $type: pri, sec, wht, blk
+    // $arrow: left, right
+
+    color: $color
+    text-align: center
+    vertical-align: middle
+    +pd($pc: 0.5)
+    +pds($pc: 1)
+    display: inline-block
+    background-color: $bgcolor
+
+    @if $hover
+        +hover($type: bg, $color: darken($bgcolor, $_btn-hover-lightness), $duration: $_btn-hover-duration)
+
+    // variation
+
+    &.pri
+        +pre-btn-pri
+
+    &.sec
+        +pre-btn-sec
+
+    &.wht
+        +pre-btn-wht
+
+    &.blk
+        +pre-btn-blk
+
+    @if $type == pri
+        +pre-btn-pri
+
+        @if $border
+            border: $_btn-pri-border
+
+        @if $arrow
+            &:before
+                border-color: $_btn-pri-color
+
+    @elseif $type == sec
+        +pre-btn-sec
+
+        @if $border
+            border: $_btn-seco-border
+
+        @if $arrow
+            &:before
+                border-color: $_btn-seco-color
+
+    @elseif $type == wht
+        +pre-btn-wht
+
+        @if $border
+            border: $_btn-bdsize solid $_lgry
+
+    @elseif $type == blk
+        +pre-btn-blk
+
+        @if $border
+            border: $_btn-bdsize solid $_gry
+
+        @if $arrow
+            &:before
+                border-color: $_wht
+
+    // border
+
+    &.s-bd
+        border-width: $_btn-bdsize
+
+    // arrow
+
+    &.s-arrow, &.s-arrow-upper, &.s-arrow-lower, &.s-arrow-back
+        padding-left: 2rem
+
+        &:before
+            left: 0.8rem
+
+    &.s-arrow-r
+        padding-right: 2rem
+
+        &:before
+            right: 1rem
+
+    @if $arrow
+
+        // @if $arrow == left
+        padding-left: 2rem
+
+        &:before
+            left: 0.8rem
+
+        @if $arrow == right
+            padding-right: 2rem
+
+            &:before
+                right: 1rem
+
+// preset
+
+=pre-btn-pri
+    color: $_btn-pri-color
+    background-color: $_btn-pri-bgcolor
+
+    +hover($type: bg, $color: darken($_btn-pri-bgcolor, $_btn-hover-lightness), $duration: $_btn-hover-duration)
+
+    // multiclass
+
+    &.s-bd
+        border: $_btn-pri-border
+
+    &.s-arrow, &.s-arrow-r, &.s-arrow-upper, &.s-arrow-lower, &.s-arrow-back
+        &:before
+            border-color: $_btn-pri-color
+
+=pre-btn-sec
+    color: $_btn-seco-color
+    background-color: $_btn-seco-bgcolor
+
+    +hover($type: bg, $color: darken($_btn-seco-bgcolor, $_btn-hover-lightness), $duration: $_btn-hover-duration)
+
+    // multiclass
+
+    &.s-bd
+        border: $_btn-seco-border
+
+    &.s-arrow, &.s-arrow-r, &.s-arrow-upper, &.s-arrow-lower, &.s-arrow-back
+        &:before
+            border-color: $_btn-seco-color
+
+=pre-btn-wht
+    color: $_blk
+    background-color: $_wht
+
+    +hover($type: bg, $color: darken($_wht, $_btn-hover-lightness), $duration: $_btn-hover-duration)
+
+    // multiclass
+
+    &.s-bd
+        border: $_btn-bdsize solid $_lgry
+
+=pre-btn-blk
+    color: $_wht
+    background-color: $_blk
+
+    +hover($type: bg, $color: lighten($_blk, 20%), $duration: $_btn-hover-duration)
+
+    // multiclass
+
+    &.s-bd
+        border: $_btn-bdsize solid $_gry
+
+    &.s-arrow, &.s-arrow-r, &.s-arrow-upper, &.s-arrow-lower, &.s-arrow-back
+        &:before
+            border-color: $_wht

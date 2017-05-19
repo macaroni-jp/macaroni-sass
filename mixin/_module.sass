@@ -1,0 +1,265 @@
+// *****************************
+// * mixin > module
+// *****************************
+
+// ********************* ul, ol
+
+=decolist($content)
+    overflow: hidden
+
+    li
+        padding-left: 1rem
+        position: relative
+
+        &:last-child
+            margin-bottom: 0
+
+        &:before
+            content: $content
+            // +poa-center
+            // right: auto
+            // float: left
+            margin-left: -1rem
+            // width: 1rem
+            // height: 1rem
+            @if $content == '-'
+                margin-right: 0.2rem
+
+=decolist-ls($lstype)
+    list-style-type: $lstype
+    padding-left: 1rem
+    overflow: visible
+
+    li
+
+        &:last-child
+            margin-bottom: 0
+
+// nav
+
+=nav
+    font-size: 0
+    overflow: visible
+
+    li
+        font-size: 1rem
+        display: inline-block
+        letter-spacing: 0
+        margin-bottom: 0
+
+        &:last-child
+            margin-right: 0
+
+    // 矢印付
+    &.s-arrow
+        +nav-arrow
+
+    // 矢印付（右）
+    &.s-arrow-r
+        +nav-arrow-r
+
+    // パイプ
+    &.s-pipe
+        +nav-pipe
+
+    // 下線
+    &.s-uline
+        +nav-uline
+
+// nav style
+
+// common
+=nav-style
+    &:before
+        content: none
+
+    li
+        position: relative
+
+        &:before
+            content: ''
+            position: absolute
+            display: inline-block
+            width: $_fontsize * 0.45
+            height: $_fontsize * 0.45
+
+            +max-width($_small-break)
+                width: $_fontsize-sp * 0.45
+                height: $_fontsize-sp * 0.45
+
+=nav-arrow
+    +nav-style
+
+    li
+        padding-left: $_fontsize
+
+        +max-width($_small-break)
+            padding-left: $_fontsize-sp
+
+        &:before
+            border-top: 1px solid $_line-color
+            border-right: 1px solid $_line-color
+            transform: rotate(45deg)
+            top: 0
+            bottom: 0
+            left: 0
+            margin: auto
+
+=nav-arrow-r
+    +nav-style
+
+    li
+        padding-right: $_fontsize
+
+        +max-width($_small-break)
+            padding-right: $_fontsize-sp
+
+        &:before
+            border-top: 1px solid $_line-color
+            border-right: 1px solid $_line-color
+            transform: rotate(45deg)
+            top: 0
+            bottom: 0
+            right: 0
+            margin: auto
+
+// パイプ
+=nav-pipe
+
+    li
+        border-left: 1px solid $_line-color
+        margin-right: 0
+        padding: 0 1rem
+
+        &:last-child
+            border-right: 1px solid $_line-color
+
+// 下線
+=nav-uline
+    li
+        a
+            text-decoration: underline
+
+            &:hover
+                +opacity(.6)
+
+
+// ********************* dl
+
+=dl-side($dt: 25%, $dd: 75%, $float: pc)
+    +clear
+
+    &.s-bd
+        +dl-s-bd
+
+    &.l-3-7
+        dt
+            @if $float == pc
+                +min-width($_small-break + 1px)
+                    width: 30%
+
+            @else
+                width: 30%
+
+        dd
+            @if $float == pc
+                +min-width($_small-break + 1px)
+                    width: 70%
+
+            @else
+                width: 70%
+
+    &.l-4-6
+        dt
+            @if $float == pc
+                +min-width($_small-break + 1px)
+                    width: 40%
+
+            @else
+                width: 40%
+
+        dd
+            @if $float == pc
+                +min-width($_small-break + 1px)
+                    width: 60%
+
+            @else
+                width: 60%
+
+    &.l-half
+        dt, dd
+            @if $float == pc
+                +min-width($_small-break + 1px)
+                    width: 50%
+
+            @else
+                width: 50%
+
+    dt, dd
+        @if $float == pc
+            +float-l
+
+        @else
+            float: left
+
+    dt
+        clear: both
+
+        @if $float == pc
+            width: 100%
+
+            +min-width($_small-break + 1px)
+                width: $dt
+
+        @else
+           width: $dt
+
+    dd
+        @if $float == pc
+            width: 100%
+
+            +min-width($_small-break + 1px)
+                width: $dd
+
+        @else
+            width: $dd
+
+// dl style
+
+// border
+=dl-s-bd
+    border: none
+    border-bottom: 1px solid $_line-color
+
+    dt, dd
+        +pd($pc: 0.5)
+        +pds($pc: 0)
+        margin-bottom: 0
+        border-top: 1px solid $_line-color
+
+// ********************* table
+
+=table($type: bd, $bg: $_table-bgcolor, $bdcolor: $_table-bdcolor, $bdsize: $_table-bdsize, $bgcolor: $_table-bgcolor)
+    @if $type == bd
+        border: $bdsize solid $bdcolor
+        border-bottom: none
+
+        th, td
+            border-bottom: $bdsize solid $bdcolor
+            border-right: $bdsize solid $bdcolor
+
+    @elseif $type == bg
+
+        thead
+            th
+               background-color: $bg
+
+        tbody
+            tr:nth-child(even)
+                background-color: $bg
+
+    @elseif $type == bdn
+        border: none
+
+        th, td
+            border: none

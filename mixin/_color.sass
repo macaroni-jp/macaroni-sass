@@ -1,0 +1,51 @@
+// *****************************
+// * mixin > color
+// *****************************
+
+// ********************* color palette
+
+=palette-c
+    // 色相24分割
+    $zp: ''
+    @for $i from 1 through 24
+        @if $i < 10
+            $zp: "0#{$i}"
+        @else
+            $zp: $i
+
+        .p#{$zp}
+            $color: adjust-hue($_pri, 360deg / 24 * ($i - 1) * -1)
+            // $num: $split * ($i - 1)
+            // $color: calc-color-hue( $_pri-color , $split * ($i - 1) )
+            // $hsb: rgb-to-hsb( $color )
+            // $rgb: red($color), green($color), blue($color)
+            // $hsl: rgb-to-hsl($color)
+            color: #fff
+            cursor: pointer
+            +pd($pc: 0.3)
+            +mb($pc: 0)
+            background-color: $color
+            box-style: border-box
+            border: 1px solid transparent
+
+            &:hover
+                border-color: #fff
+
+            &.check
+              position: relative
+
+              &:before
+                content: ''
+                display: inline-block
+                width: 4px
+                height: 4px
+                +border-r(2px)
+                +poa-vcenter-l
+                right: 1.25rem
+                // left: auto
+                background-color: #fff
+
+            &:after
+                // content: '[#{$split * (1 - $i)}]'
+                // content: '[#{$num} / COLOR: #{$color} / RGB: #{$rgb} / HSL: #{$hsl} / HSB: #{$hsb}]'
+                content: '#{$color}'

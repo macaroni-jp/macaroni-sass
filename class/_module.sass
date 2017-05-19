@@ -1,0 +1,235 @@
+// *****************************
+// * module
+// *****************************
+// 機能（部品）を作る場合に記述
+
+.m
+    @at-root
+
+        // ********************* ul
+
+        // 注釈付きリスト
+        &-ul-anno
+            +decolist('*')
+
+        // 注釈付きリスト全角
+        &-ul-anno-z
+            +decolist('※')
+
+        // 黒丸付きリスト
+        &-ul-disc
+            +decolist('・')
+            // +decolistls(disc)
+
+        // 二重付き丸リスト
+        &-ul-dcircle
+            +decolist('◎')
+
+        // ハイフン付きリスト
+        &-ul-hyp
+            +decolist('-')
+
+        // ナビゲーション
+        &-nav
+            +nav
+
+        // ********************* ol
+
+        // 数字付きリスト
+        &-ol-num
+            +decolist-ls(decimal)
+
+        // 小文字のアルファベットリスト
+        &-ol-lalpha
+            +decolist-ls(lower-alpha)
+
+        // 小文字のアルファベットリスト
+        &-ol-ualpha
+            +decolist-ls(upper-latin)
+
+        // ********************* dl
+
+        &-dl-side
+            +dl-side
+
+        &-dl-side-all
+            +dl-side($float: all)
+
+        // ********************* table
+
+        &-table
+            +table
+
+            &.s-bg
+                +table($type: bg)
+
+            &.s-bdn
+                +table($type: bdn)
+
+        // ****************************************** pending
+
+        // // ********************* 12 column grid
+
+        // // Float対応
+        // &-grid
+        //     max-width: 100%
+        //     // margin-right: auto
+        //     // margin-left: auto
+
+        //     // +max-width($_small-break)
+        //     // margin-left: $_gutter * 0.5 * -1
+        //     // margin-right: $_gutter * 0.5 * -1
+
+        //     &.l-static-grid
+        //         max-width: $_static-width + $_gutter * 2
+
+        //     &.l-compact-grid
+        //         max-width: $_compact-width + $_gutter * 2
+
+        //     .row
+        //         +clearfix
+        //         box-sizing: border-box
+        //         // margin-left: $_gutter * 0.5 * -1
+        //         // margin-right: $_gutter * 0.5 * -1
+
+        //         // +max-width($_small-break)
+        //         //     margin-left: 0
+        //         //     margin-right: 0
+
+        //         // &.s-bdl
+        //         //     .col
+        //         //         border-left: 1px solid $_line-color
+
+        //         //     &:first-child
+        //         //         border-left: 0
+
+        //         .col
+        //             box-sizing: border-box
+        //             float: left
+        //             padding-right: $_gutter
+        //             padding-left: $_gutter
+
+        //             &.l-float-r
+        //                 +float-r
+
+        //             +max-width($_small-break)
+        //                 padding-right: 0
+        //                 padding-left: 0
+
+        //             // col
+        //             &.nest
+        //                 padding-right: $_gutter * 0.5
+        //                 padding-left: $_gutter * 0.5
+
+        //                 +max-width($_small-break)
+        //                     padding-right: 0
+        //                     padding-left: 0
+
+        //                 .row
+        //                     margin-left: $_gutter * 0.5 * -1
+        //                     margin-right: $_gutter * 0.5 * -1
+
+        //                     +max-width($_small-break)
+        //                         margin-left: $_gutter * 0.5 * 0.5 * -1
+        //                         margin-right: $_gutter * 0.5 * 0.5 * -1
+
+        //                     .col
+        //                         padding-right: $_gutter * 0.5
+        //                         padding-left: $_gutter * 0.5
+
+        //                         +max-width($_small-break)
+        //                             padding-right: $_gutter * 0.5 * 0.5
+        //                             padding-left: $_gutter * 0.5 * 0.5
+
+        //                     // row
+        //                     .g0
+        //                         margin-left: 0
+        //                         margin-right: 0
+
+        //                         .col
+        //                             padding-left: 0
+        //                             padding-right: 0
+
+        //         // row
+        //         &.g0
+        //             margin-left: 0
+        //             margin-right: 0
+
+        //             .col
+        //                 padding-left: 0
+        //                 padding-right: 0
+
+
+        //             img
+        //                 max-width: 100%
+        //                 height: auto
+
+        //         @for $i from 1 through 12
+        //             .l-#{$i}
+        //                 width: percentage($i/12)
+
+        //                 // @if $i < 4
+        //                 //     +max-width($largeBreak)
+        //                 //         width: percentage($i * 2/12)
+
+        //                 // @else if $i = 4
+        //                 //     +max-width($largeBreak)
+        //                 //         width: percentage(6/12)
+
+        //                 // @else
+        //                 //     +max-width($largeBreak)
+        //                 //         width: percentage(12/12)
+
+        //                 +max-width($_small-break)
+        //                     width: percentage(12/12)
+        //                     // width: calc( 100% - #{$_gutter} * 0.5 * 0.5 )
+
+        //                 &.l-half-sp
+        //                     +max-width($_small-break)
+        //                         width: percentage(6/12)
+        //                         margin-right: 0
+
+        //         // .l-1
+
+        //         //     +max-width($_small-break)
+        //         //         width: calc( 100% - #{$_gutter} * 0.5 * 0.5 )
+
+
+
+        //     // Flexbox対応
+        //     // .row
+        //     //     align-items: center
+        //     //     display: flex
+        //     //     flex-wrap: wrap
+        //     //     justify-content: center
+        //     //
+        //     //     .col
+        //     //       box-sizing: border-box
+        //     //       padding-right: $_gutter
+        //     //       padding-left: $_gutter
+        //     //
+        //     //       +max-width($_small-break)
+        //     //         padding-right: $_gutter * 0.5
+        //     //         padding-left: $_gutter * 0.5
+        //     //
+        //     //       img
+        //     //         width: 100%
+        //     //
+        //     //         @for $i from 1 through 12
+        //     //             .l-#{$i}
+        //     //                 width: percentage($i/12)
+        //     //
+        //     //                 @if $i == 1
+        //     //                     +max-width($largeBreak)
+        //     //                         width: percentage($i * 2/12)
+        //     //
+        //     //                 @else if $i = 4
+        //     //                     +max-width($largeBreak)
+        //     //                         width: percentage(6/12)
+        //     //
+        //     //                 @else
+        //     //
+        //     //                 +max-width($_small-break)
+        //     //                     width: percentage(12/12)
+
+

@@ -1,0 +1,109 @@
+// *****************************
+// * style
+// *****************************
+// スタイルを記述
+
+.s
+    @at-root
+
+        // ********************* background color
+
+        @each $bg_color in $colors
+            $index_key: index($colors, $bg_color)
+
+            &-bg-#{$bg_color}
+                background-color: nth($colors-var, $index_key)
+
+        // ********************* border
+
+        &-bd
+            border: 1px solid $_line-color
+
+        &-bdtn
+            border-top: none
+
+        &-bdbn
+            border-bottom: none
+
+        &-bdn
+            border: none
+
+        &-bdt
+            border-top: 1px solid $_line-color
+
+        &-bdt-pc
+            +min-width($_small-break + 1px)
+                border-top: 1px solid $_line-color
+
+        &-bdr
+            border-right: 1px solid $_line-color
+
+        &-bdb
+            border-bottom: 1px solid $_line-color
+
+        &-bdb-dash
+            border-bottom: 1px dashed $_gry
+
+        &-bdb-dot
+            border-bottom: 1px dotted $_gry
+
+        &-bdb-sp
+            +max-width($_small-break)
+                border-bottom: 1px solid $_gry
+
+        &-bdl
+            border-left: 1px solid $_line-color
+
+        &-bdl-pc
+            +min-width($_small-break + 1px)
+                border-left: 1px solid $_line-color
+
+        // ********************* round
+
+        @for $i from 2 through 10
+            .s-r#{$i}
+                +border-r(#{$i}px)
+
+        // ********************* arrow
+
+        &-arrow
+            +arrow
+
+        &-arrow-r
+            +arrow-r
+
+        &-arrow-upper
+            +arrow-upper
+
+        &-arrow-lower
+            +arrow-lower
+
+        &-arrow-back
+            +arrow-back
+
+        // ********************* triangle
+
+        &-tri-top
+            +tri-top
+
+        &-tri-right
+            +tri-right
+
+        &-tri-bottom
+            +tri-bottom
+
+        &-tri-left
+            +tri-left
+
+        // $poslist: top, right, bottom, left
+
+        // @each $item in $poslist
+        //     &-tri-#{$item}-pri
+        //         +tri-#{$item}-pri
+
+        // ********************* btn
+
+        &-btn
+            +btn
+
+

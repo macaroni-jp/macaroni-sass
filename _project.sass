@@ -1,0 +1,1074 @@
+// *****************************
+// * project
+// *****************************
+// 案件毎に記述（主にBEM）
+
+// *****************************
+// * base
+// *****************************
+
+body
+    +yugo
+    +lh(1.5)
+
+p
+    code
+        // color: #008080
+        color: #fff
+        +pd($pc: 0.1)
+        +pds($pc: 0.25)
+        background-color: $_blk
+        +mr($pc: 0.1)
+        // background-color: lighten($_pri-color, 30%)
+        // background: #f9f9f9
+        // border: 1px solid $_linecolor
+
+// *****************************
+// * var
+// *****************************
+
+$_main-width: 78%
+$_sub-width: 20%
+$_side-margin : 60px
+
+// *****************************
+// * mixin
+// *****************************
+
+=comfo
+    font-family: 'Comfortaa', sans-serif
+
+=poppins
+    font-family: 'Poppins', sans-serif
+
+=abril
+    font-family: 'Abril Fatface', cursive
+
+=notojp
+    font-family: 'Noto Sans Japanese', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'Osaka', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif
+
+// *****************************
+// * typography
+// *****************************
+
+.t
+    @at-root
+        // sans-serif
+
+        &-pop
+            +poppins
+
+        &-abril
+            +abril
+
+        &-notojp
+            +notojp
+
+// *****************************
+// * animate
+// *****************************
+
+// *****************************
+// * page_list
+// *****************************
+
+// *****************************
+// * container
+// *****************************
+
+#container
+    +min
+    // +pdt($pc: 2.5, $sp: 0)
+
+// *****************************
+// * layout
+// *****************************
+
+.l
+    @at-root
+
+// *****************************
+// * module
+// *****************************
+
+.m
+    @at-root
+        &-palette-c
+            +palette-c
+
+        &-idx
+            h2
+                +poppins
+                +fz($pc: $_fontsize * 2, $sp: $_fontsize * 1.5)
+                font-weight: 600
+                +caps
+                +center
+                +mb($pc: 1)
+
+            .ele
+                // +pd($pc: 1)
+                // +bg-lgry
+                +grid-per($col: 5, $col-sp: 1, $margin: 5%)
+                float: left
+                +mb($pc: 1)
+
+                h3
+                    +poppins
+                    +fz($pc: $_fontsize * 1.5, $sp: $_fontsize * 1.25)
+                    font-weight: 600
+                    +caps
+                    +kern
+                    +mb($pc: 0.5)
+
+                ul
+                    +mb($pc: 1)
+
+                    li
+                        // +poppins
+                        font-weight: bold
+                        // +lh($pc: 1.5, $sp: 1.25)
+                        // display: block
+
+                        &:before
+                            color: darken($_pri, 5%)
+
+                        a
+                            // display: block
+                            +hover(underline)
+
+                            .ttl
+                                +caps
+
+                            .des
+                                color: $_gry
+                                // color: darken($_pri, 8%)
+                                display: block
+                                +fz($pc: 12px)
+                                +just
+
+        &-side-nav
+            h3
+                +poppins
+                +fz($pc: $_fontsize * 1.5, $sp: $_fontsize * 1.25)
+                font-weight: 600
+                +caps
+                // +kern
+                +mb($pc: 0.25)
+
+            ul
+                +caps
+                +mb($pc: 1)
+                +ov
+
+                li
+                    // +poppins
+                    font-weight: bold
+                    // +lh($pc: 1.5, $sp: 1.25)
+                    margin-bottom: 0
+
+                    a
+                        // color: $_gry
+                        display: block
+                        padding: 0.25rem 0
+                        // +pd($pc: 0.2)
+                        // +pds($pc: 0.2)
+                        // +hover(underline)
+                        +por
+                        // +hover($type: color, $color: darken($_pri, 8%), $duration: .2s)
+
+                        &:before
+                            content: ''
+                            display: inline-block
+                            width: 70px
+                            height: 5px
+                            +poa-vcenter-l
+                            left: (90px + 70px) * -1
+                            background-color: $_pri
+                            transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1)
+
+                            +max-width($_small-break)
+                                left: -90px
+
+                        &.current, &:hover
+                            // color: darken($_pri, 8%)
+                            // color: $_gry
+                            // padding-right: 1rem
+
+                            &:before
+                                left: -90px
+                                // background-color: $_dgry
+
+                                // +max-width($_small-break)
+                                //     left: 0
+
+                    ul
+                        li
+                            padding-left: 1rem
+
+
+        &-summary
+
+            .btn-test
+                font-size: 18px
+                +arrow
+                +btn($type: pri, $arrow: 1)
+                // display: block
+                // +arrow
+                // +btn($border: 1, $arrow: 1)
+                // +tri-bottom
+                // +btn
+
+                // +btn($border: 1)
+            .tri-test
+                +tri($color: $_seco, $pos: right)
+                +bg-sec
+                +pd($pc: 1)
+
+
+            h2, h4
+                color: darken($_pri, 8%)
+                +kern
+
+            h2
+                font-size: 13px
+                // color: $_gry
+                font-weight: bold
+                +les1
+                +mb($pc: 0.25)
+                // +pdb($pc: 0.5)
+                // +pd($pc: 0.5)
+                // border-bottom: 1px solid $_linecolor
+
+            h3
+                +poppins
+                font-weight: 600
+                +fz($pc: $_fontsize * 2, $sp: $_fontsize-sp * 1.5)
+                +caps
+                // +comfo
+                // +kern
+                +mb($pc: 0.5)
+
+            h4
+                // color: $_gry
+                // +poppins
+                font-weight: bold
+                +fz($pc: $_fontsize)
+                // color: darken($_pri-color, 8%)
+                // +kern
+                +caps
+                +mb($pc: 0.25)
+
+            h5
+                +mb($pc: 0.25)
+
+
+            .file
+                font-size: 12px
+                font-weight: bold
+                color: $_gry
+
+            p
+                a
+                    color: $_dblu
+                    font-weight: bold
+                    +hover($type: underline)
+                    +ms($pc: 0.1)
+
+                    i
+                        +ml($pc: 0.1)
+
+            .m-table
+                table-layout: fixed
+
+                tbody
+                    // th
+                    //     word-wrap: break-word
+
+                    //     // +min-width($_small-break + 1px)
+                    //     width: 20%
+
+                    td
+                        width: 45%
+                        word-wrap: break-word
+
+                        // &:nth-child(3n)
+                        //     // +min-width($_small-break + 1px)
+                        //     width: 40%
+
+                    // td
+                    //     // +min-width($_small-break + 1px)
+                    //     width: 70%
+
+        &-pre
+            +clear
+            .pre
+                +clear
+                // border: 3px solid $_lgry
+                background-color: lighten($_lgry, 18%)
+                +pd($pc: 1)
+
+                h5
+                    +poppins
+                    font-weight: 600
+                    +fz($pc: $_fontsize * 1.25, $sp: $_fontsize-sp * 1.25)
+                    // color: darken($_pri-color, 8%)
+                    +kern
+                    // +mb($pc: 0.25)
+
+                &.s-bg-gry
+                    background-color: $_gry
+
+                    h5
+                        color: #fff
+
+                .box
+                    height: 200px
+
+                    p
+                        +center
+                        width: 160px
+                        height: 1.5rem
+                        +bg-lgry
+
+                .l-w500
+                    width: 500px
+
+            pre
+                position: relative
+                margin: 0
+                // margin-bottom: 1.5rem
+
+                &:before
+                    font-size: 12px
+                    // font-weight: bold
+                    color: #fff
+                    position: absolute
+                    display: inline-block
+                    padding: 4px 12px
+                    // background-color: $_pri
+                    background-color: darken($_pri, 15%)
+                    right: 0
+                    top: 0
+
+                &.jade
+                    &:before
+                        content: 'jade'
+                        // color: #fff
+                        background-color: darken($_pri, 30%)
+
+                &.jquery
+                    &:before
+                        content: 'jQuery'
+                        // color: #fff
+                        background-color: #0769ad
+
+                &.sass
+                    &:before
+                        content: 'sass'
+
+                &.json
+                    &:before
+                        content: 'json'
+
+                code
+                    // font-family: Consolas, 'Liberation Mono', Courier, monospace
+                    font-size: 14px
+                    color: #fff
+                    padding: 1rem
+                    display: block
+                    overflow-x: auto
+                    background-color: #000
+
+
+            .m-grid
+                line-height: 2
+
+                .row
+                    margin-bottom: 12px
+
+                    .col
+                        p
+                            font-size: 11.3px
+                            padding: 0 4px
+                            margin-bottom: 0
+                            background-color: $_lgry
+
+                        .row
+                            margin-bottom: 0
+
+// // *****************************
+// // * style
+// // *****************************
+
+.s
+    @at-root
+        &-comfo
+            +comfo
+
+        &-mono
+            font-family: monospace, monospace
+
+        &-hover-c
+            +hover($type: color, $color: $_pri)
+
+        &-hover-tdu
+            +hover($type: underline)
+
+        &-hover-bg
+            +hover($type: bg, $color: yellow)
+
+        &-btn-custom
+            +btn($bgcolor: $_wht, $hover: false)
+            +hover($type: slide, $color: yellow)
+
+// *****************************
+// * header
+// *****************************
+
+.hdr
+    background-color: transparent
+    // height: 46px
+    width: 100%
+    // z-index: 15
+    // background-color: $_lgry
+
+    +max-width($_small-break)
+        // height: 70px
+        position: fixed
+        text-align: left
+        top: 0
+        background-color: #fff
+        transition: background-color 0.2s linear
+        z-index: 100
+
+    @at-root
+        &__inner
+
+            // margin-left: $_side-margin - 20px
+            // margin-right: $_side-margin
+
+            // +mm($_small-break + 1, $_large-break)
+            //     width: $_static-width
+            //     margin-left: auto
+            //     margin-right: auto
+
+            // +max-width($_small-break)
+            //     margin-left: $_side-margin-sp
+            //     margin-right: $_side-margin-sp
+
+            @at-root
+                &__logo
+                    // +comfo
+                    +poppins
+                    font-weight: 600
+                    +fz($pc: $_fontsize * 1.75, $sp: 24px)
+                    // +kern
+                    display: inline-block
+                    +pd($pc: 0.5)
+                    +pds($pc: 0)
+                    +mt($pc: 2.5, $sp: 0)
+
+                    +max-width($_small-break)
+                        margin-left: $_side-margin-sp
+
+                &__gnav
+                    +max-width($_small-break)
+                        overflow-x: scroll
+                        overflow-y: hidden
+                        -webkit-overflow-scrolling: touch
+
+                    ul
+                        +caps
+                        // letter-spacing: -0.25rem
+
+                        +max-width($_small-break)
+                            width: $_small-break
+                            background-color: $_blk
+
+                        +min-width($_small-break + 1px)
+                            margin-right: -15px
+
+                        li
+                            // +comfo
+                            +poppins
+                            font-size: 13px
+                            font-weight: 600
+                            +les0
+                            padding: 0
+                            margin-bottom: 0
+
+                            // +max-width($_small-break)
+                            //     border-right: 1px solid $_dgry
+
+                            a
+                                display: inline-block
+                                +pdt($pc: 3.7, $sp: 1.2)
+                                +pdb($pc: 1, $sp: 0.75)
+                                +pds($pc: 1, $sp: 1.3)
+                                // +hover($type: color, $color: $_gry, $duration: .2s)
+                                +por
+
+                                +max-width($_small-break)
+                                    color: $_gry
+
+                                &:before
+                                    content: ''
+                                    display: block
+                                    +poa
+                                    width: 5px
+                                    height: 26px
+                                    left: 0
+                                    right: 0
+                                    top: -26px
+                                    // bottom: 0
+                                    margin: auto
+                                    background-color: $_dgry
+                                    background-color: $_pri
+                                    transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1)
+
+                                    +max-width($_small-break)
+                                        height: 13px
+                                        top: 0
+                                        // background-color: $_gry
+
+
+                                &:hover
+                                    text-decoration: none
+
+                                &.current, &:hover
+                                    +max-width($_small-break)
+                                        // color: #fff
+                                        color: $_pri
+                                        // background-color: darken($_pri, 45%)
+
+                                    &:before
+                                        +min-width($_small-break + 1px)
+                                            top: 0
+                                            // background-color: $_dgry
+
+
+
+// *****************************
+// * subnav
+// *****************************
+
+.subnav
+    text-align: center
+
+    @at-root
+        &__list
+            +comfo
+            font-size: 14px
+            display: inline-block
+            margin: 0 20px
+
+            +max-width($_small-break)
+                display: block
+                padding: 10px 0
+
+            &__link
+                color: #666
+                letter-spacing: 0.1em
+
+// *****************************
+// * sharenav
+// *****************************
+
+.sharenav
+
+// *****************************
+// * content
+// *****************************
+
+.cont
+    +pdt($pc: 0, $sp: 8)
+
+// *****************************
+// * page-header
+// *****************************
+
+.pg-hdr
+    overflow: hidden
+    +mb($pc: 4, $sp: 1)
+
+    @at-root
+        // &__img
+        //     background-color: #ddd
+        //     height: 200px
+        //     margin: 0 0 40px 0
+        //     width: 100%
+
+        //     +mm($_small-break + 1px, $_large-break)
+        //         margin: 0 0 18px 0
+
+        //     +max-width($_small-break)
+        //         height: 90px
+        //         margin: 0 0 18px 0
+
+        //     &.home
+        //         margin: 0
+
+        //     &__inner
+        //         background-position: center 55%
+        //         background-repeat: no-repeat
+        //         background-size: cover
+        //         height: 100%
+
+        //         +mm($_small-break+1px, 1440px )
+        //             background-position: center
+        //             background-size: auto
+
+        //         +max-width($_small-break)
+        //             background-position: center
+
+        &__ttl
+            // +comfo
+            +poppins
+            font-weight: 600
+            +fz($pc: $_fontsize * 4, $sp: $_fontsize * 2)
+            // +lh($pc: 1.75)
+            // +kern
+            +caps
+            // +float-l
+            // display: inline-block
+            // +mr($pc: 1, $sp: 0)
+            margin-bottom: 0
+
+            &:after
+                content: ''
+                display: block
+                width: 2.5rem
+                height: 0
+                // border-bottom: 1px solid $_dgry
+                border-bottom: 5px solid $_pri
+                +mt($pc: 0.75, $sp: 0.25)
+
+                // +max-width($_small-break)
+                //     content: none
+
+        &__small
+            // +poppins
+            font-size: 12px
+            // font-weight: normal
+            // font-weight: 600
+            // color: darken($_pri, 8%)
+            font-weight: bold
+            color: $_gry
+            +right-pc
+            display: block
+            // color: darken($_pri-color, 8%)
+            // +float-l
+            // +mr($pc: 6, $sp: 0)
+            +mb($pc: 0)
+
+        &__des
+            // font-size: 12px
+            font-weight: bold
+            // color: $_gry
+            // +float-l
+            // display: inline-block
+
+// *****************************
+// * toggleNav
+// *****************************
+
+.btn-toggle
+    background-size: 140px 70px
+    height: 70px
+    position: fixed
+    right: 0
+    top: 0
+    transition: background-color 0.2s linear
+    visibility: visible
+    width: 70px
+    z-index: 101
+
+    &--close
+        background-position: -70px 0
+
+.text-nav
+    color: $_red
+    letter-spacing: 0.1em
+    position: fixed
+    right: 50px
+    top: 18px
+    z-index: 60
+
+    &__inner
+        display: inline-block
+        font-size: 15px
+        transition: color 0.2s linear
+        vertical-align: middle
+
+        .fa
+            color: $_red
+            font-size: 20px
+            margin-right: 15px
+            transition: color 0.2s linear
+
+.page-nav
+    background: rgba(0,0,0, 0.8)
+    height: 0
+    left: 0
+    opacity: 0
+    overflow-y: auto
+    position: fixed
+    text-align: center
+    top: 0
+    width: 100%
+    transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1)
+
+    .gnav
+        padding-right: 50px
+
+        +max-width($_small-break)
+            padding-right: 0
+            padding-top: 60px
+
+    .gnav__list
+        float: left
+        font-size: 12px
+        font-weight: lighter
+        letter-spacing: 0.1em
+        padding: 25px 0 0
+        text-align: center
+        width: 14%
+
+        +max-width($_small-break)
+            font-size: 13px
+            letter-spacing: 0.2em
+            padding: 0
+            width: 100%
+
+        a
+            color: #ffffff
+
+            +max-width($_small-break)
+                display: block
+                padding: 10px 0 10px
+
+                &:hover
+                    text-decoration: none
+
+    .gnav__list__sns
+
+        &.l-only-pc
+            display: inline
+
+            +max-width($_small-break)
+                display: none
+
+        &.l-only-sp
+            display: none
+
+            +max-width($_small-break)
+                display: inline
+
+        +max-width($_small-break)
+            font-size: 24px
+            margin-top: 15px
+
+            a
+                color: #ffffff
+                margin: 0 10px
+                padding: 5px 10px
+
+    +max-width($_small-break)
+            top: 0
+
+    @at-root
+        &--on
+            background: rgba(0,0,0, 0.8)
+            height: 70px
+            opacity: 1
+            transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1)
+
+            +max-width($_small-break)
+                height: 100%
+
+// *****************************
+// * main-visual
+// *****************************
+
+.loadingContainer
+    background-color: #fff !important
+    position: fixed
+    z-index: 200 !important
+
+.main-area
+    height: 100%
+    width: 100%
+    z-index: 6
+
+    @at-root
+        &__copy
+            bottom: 190px
+            display: block
+            left: 0
+            margin: 0 auto
+            right: 0
+            text-align: center
+
+            +max-width($_small-break)
+                bottom: 100px
+                width: 426px * 0.5
+
+                img
+                    width: 100%
+
+        &__logo
+            left: 0
+            margin: -34px auto 0
+            right: 0
+            top: 50%
+
+            +mm($_small-break + 1px, $_large-break)
+                margin-top: -24px
+                width: 438px * 0.5
+
+            +max-width($_small-break)
+                margin-top: -24px
+                width: 438px * 0.5
+
+        &__btn
+                display: block
+
+                a
+                    text-decoration: none
+
+                &.scroll
+                    background: url(../images/home/bg-btn-scroll.png) no-repeat 0 0
+                    bottom: 50px
+                    height: 90px
+                    left: 0
+                    margin: auto
+                    right: 0
+                    text-align: center
+                    width: 90px
+
+                    &:hover
+                        text-decoration: none
+
+                    +max-width($_small-break)
+                        background-position: -45px 0
+                        background-size: 105px 60px
+                        bottom: 20px
+                        height: 60px
+                        width: 60px
+
+                    span
+                        +roboto
+                        color: #fff
+                        display: block
+                        font-size: 13px
+                        letter-spacing: 3px
+                        padding-top: 27px
+
+                        +max-width($_small-break)
+                            font-size: 10px
+                            letter-spacing: 1px
+                            padding-top: 22px
+
+                    img
+                        background: url(../images/home/bg-btn-scroll-inner.png) no-repeat 0 0
+                        content: ''
+                        display: block
+                        height: 13px
+                        left: 0
+                        margin: auto
+                        opacity: 1 !important
+                        position: absolute
+                        right: 0
+                        top: 55px
+                        width: 18px
+
+                        +max-width($_small-break)
+                            display: none
+
+        &__btn-access
+            bottom: 40px
+            display: block
+            height: 160px
+            right: $_side-margin
+            width: 160px
+
+            +max-width($_small-break)
+                bottom: 60px
+                height: 106px
+                right: $_side-margin-sp
+                width: 106px
+
+// // *****************************
+// // * section
+// // *****************************
+
+.sect
+    +mb($pc: 2)
+
+    // @at-root
+    //     &__ttl
+    //         +mb($pc: 1rem)
+
+        // &__cont
+        //     margin-bottom: 24px
+
+
+// *****************************
+// * sns-widget
+// *****************************
+
+.sns-widget
+
+// *****************************
+// * pg-copy
+// *****************************
+
+.pg-copy
+
+// *****************************
+// * sidebar
+// *****************************
+
+.sidebar
+
+// *****************************
+// * side-nav
+// *****************************
+
+.side-nav
+
+// *****************************
+// * map
+// *****************************
+
+#map
+    height: 380px
+    margin: 30px 0 60px
+    width: 100%
+
+// *****************************
+// * pagetop
+// *****************************
+
+.m-pagetop
+    height: 60px
+    overflow: hidden
+    padding: 30px 0
+    z-index: 10
+
+    +max-width($_small-break)
+        display: none
+
+    a
+        right: 40px
+        top: 0
+
+        +max-width($_small-break)
+            right: $_side-margin-sp
+
+    img
+        left: 21px
+        position: absolute
+        top: 24px
+        width: 36px * 0.5
+
+    @at-root
+        &-circle
+            border-radius: 100%
+            background-color: #000
+            height: 60px
+            width: 60px
+
+            &:hover
+                opacity: 0.7
+
+                +max-width($_small-break)
+                    opacity: 1
+
+// *****************************
+// * footer
+// *****************************
+
+.ftr
+    background-color: #f5f5f5
+    // position: relative
+    // z-index: 2
+    +pdt($pc: 3)
+    +pdb($pc: 3)
+
+
+    @at-root
+        &__inner
+            box-sizing: border-box
+            overflow: hidden
+
+            &__logo
+                display: inline-block
+                text-align: center
+
+                +max-width($_small-break)
+                    margin-bottom: 30px
+
+                img
+                    width: auto
+                    +max-width($_small-break)
+                        margin: auto
+                        width: 352px * 0.5
+
+            &__snslink
+                display: inline-block
+                margin: 15px 0 0
+                text-align: left
+
+                +max-width($_small-break)
+                    text-align: center
+                    margin-bottom: 20px
+
+                p
+                    font-size: 11px
+                    letter-spacing: 0
+
+                i
+                    font-size: 20px
+                    margin-right: 20px
+
+                    +max-width($_small-break)
+                        margin-right: 10px
+
+            &__copyright
+                +poppins
+                display: inline-block
+
+// *****************************
+// * fnav
+// *****************************
+
+.fnav
+    font-size: 12px
+
+    a
+        color: #fff
+
+        &:hover
+            opacity: 0.6
+            text-decoration: none
+
+            +max-width($_small-break)
+                opacity: 1
+
+    @at-root
+        &__list
+            display: inline-block
+            font-size: 1.1em
+            letter-spacing: .1em
+            margin-right: 70px
+
+            +max-width($_small-break)
+                display: block
+                margin-right: 0
+                margin-bottom: 5px
+
+            &.last
+                margin-right: 0
+                +max-width($_small-break)
+                    margin-bottom: 0

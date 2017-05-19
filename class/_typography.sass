@@ -1,0 +1,320 @@
+// *****************************
+// * typography
+// *****************************
+
+.t
+    @at-root
+
+        // ********************* font-family
+
+        // ---------- ja
+
+        // gothic
+
+        &-yugo
+            +yugo
+
+        &-hirakaku
+            +hirakaku
+
+        // &-meiryo
+        //     +meiryo
+
+        // &-osaka
+        //     +osaka
+
+        // mincho
+
+        // Mac only
+        &-yumin
+            +yumin
+
+        &-hiramin
+            +hiramin
+
+        // ---------- en
+
+        &-hel
+            +hel
+
+        // ---------- Google Fonts
+
+        // sans-serif
+
+        &-mont
+            +mont
+
+        &-roboto
+            +roboto
+
+        &-quick4
+            +quicksand
+            font-weight: 400
+
+        &-quick7
+            +quicksand
+            font-weight: 700
+
+        &-varela
+            +varela
+
+        &-lato
+            +lato
+
+        // serif
+
+        &-cardo
+            +cardo
+
+        // ---------- 合成フォント
+
+        // mincho
+
+        &-hiramin-han
+            +hiramin-han
+
+        // ---------- M+
+
+        // &-m2l
+        //     +fontsetL
+
+        // &-m2r
+        //     +fontsetR
+
+        // &-m2m
+        //     +fontsetM
+
+        // &-m2b
+        //     +fontsetB
+
+        // ********************* font size
+
+        &-fz1
+            +fz($pc: 10px)
+
+        &-fz113
+            +fz($pc: 11.3px)
+
+        &-fz12
+            +fz($pc: 12px)
+
+        &-fz13
+            +fz($pc: 13px)
+
+        &-fz133
+            +fz($pc: 13.3px)
+
+        &-fz14
+            +fz($pc: 14px)
+
+        &-fz15
+            +fz($pc: 15px, $sp: 14px)
+
+        &-fz16
+            +fz($pc: 16px, $sp: 14px)
+
+        &-fz17
+            +fz($pc: 17px, $sp: 15px)
+
+        &-fz18
+            +fz($pc: 18px, $sp: 15px)
+
+        &-fz20
+            +fz($pc: 20px, $sp: 15px)
+
+        &-fz21
+            +fz($pc: 21px, $sp: 18px)
+
+        &-fz22
+            +fz($pc: 22px, $sp: 18px)
+
+        &-fz24
+            +fz($pc: 24px, $sp: 18px)
+
+        &-fz28
+            +fz($pc: 28px, $sp: 21px)
+
+        &-fz30
+            +fz($pc: 30px, $sp: 24px)
+
+        &-fz32
+            +fz($pc: 32px, $sp: 24px)
+
+        &-fz35
+            +fz($pc: 35px, $sp: 28px)
+
+        &-fz38
+            +fz($pc: 38px, $sp: 28px)
+
+        &-fz42
+            +fz($pc: 42px, $sp: 28px)
+
+        &-fz48
+            +fz($pc: 48px, $sp: 32px)
+
+        // ********************* font-weight
+
+        &-fwb
+            font-weight: bold
+
+        &-fw1
+            font-weight: 100
+
+        &-fw4
+            font-weight: 400
+
+        &-fw6
+            font-weight: 600
+
+        &-fw7
+            font-weight: 700
+
+        // ********************* color
+
+        @each $color in $colors
+            $index_key: index($colors, $color)
+
+            &-#{$color}
+                color: nth($colors_var, $index_key)
+
+        // &-pri
+        //     color: $_pri
+
+        // &-sec
+        //     color: $_sec
+
+        // &-blk
+        //     color: $_black
+
+        // &-wht
+        //     color: #fff
+
+        // &-gry
+        //     color: $_grey
+
+        // &-lgry
+        //     color: $_lgrey
+
+        // &-dgry
+        //     color: $_dgrey
+
+        // &-red
+        //     color: $_red
+
+        // &-lred
+        //     color: $_lred
+
+        // &-dred
+        //     color: $_dred
+
+        // &-grn
+        //     color: $_green
+
+        // &-lgrn
+        //     color: $_lgreen
+
+        // &-dgrn
+        //     color: $_dgreen
+
+        // &-blu
+        //     color: $_blue
+
+        // &-lblu
+        //     color: $_lblue
+
+        // &-dblu
+        //     color: $_dblue
+
+        // ********************* line-height
+
+        &-lh1
+            +lh1
+
+        &-lh15
+            +lh15
+
+        &-lh175
+            +lh175
+
+        &-lh2
+            +lh2
+
+        &-lh24
+            +lh24
+
+        &-lh3
+            +lh3
+
+        // ********************* letter-spacing
+
+        &-les0
+            +les
+
+        &-les1
+            +les1
+
+        &-les2
+            +les2
+
+        &-les3
+            +les3
+
+        &-les4
+            +les4
+
+        // ********************* text-align
+
+        &-center
+            +center
+
+        &-center-pc
+            +center-pc
+
+        &-center-sp
+            +center-sp
+
+        &-left
+            +left
+
+        &-left-sp
+            +left-sp
+
+        &-right
+            +right
+
+        &-right-pc
+            +right-pc
+
+        &-right-sp
+            +right-sp
+
+        // 日本語文章の両端揃え
+        &-just
+            +just
+
+        // ********************* other
+
+        // カーニング
+        &-kern
+            +kern
+
+        // カーニング解除
+        &-nokern
+            +nokern
+
+        // 欧文の頭文字を大文字に
+        &-caps
+            +caps
+
+        // 欧文を小文字に
+        &-lower
+            +lower
+
+        // 欧文を大文字に
+        &-upper
+            +upper
+
+        // ********************* heading
+
+        // 見出し用
+
