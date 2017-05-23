@@ -20,6 +20,6 @@ Thumbs.db
 ._*
 *~
 
-_src/_project.sass
-_src/_var.sass
-_src/import.sass
+_project.sass
+_var.sass
+import.sass
