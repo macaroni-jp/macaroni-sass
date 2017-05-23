@@ -19,3 +19,7 @@ Thumbs.db
 *.swp
 ._*
 *~
+
+_src/_project.sass
+_src/_var.sass
+_src/import.sass
