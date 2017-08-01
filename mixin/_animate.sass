@@ -41,58 +41,31 @@
 
 // ********************* fadein on Scroll
 
-=fadein-sc($dir: normal, $duration: 0.5, $delay: 0.1, $nth: 0, $pos: 0)
+=fadein-sc($dir: normal, $duration: 0.5, $delay: 0.1, $nth: null, $pos: 0)
     opacity: 0
-    $delay-count: ''
+    // $delay-count: ''
+    @each $prefix in $set_prefix
+        #{$prefix}transition: all #{$duration}s $_easing
+
+    // transform: translateY($pos)
+
+    @if $dir == hor
+        transform: translateX($pos)
+
+    @else if $dir == ver
+        transform: translateY($pos)
 
     &.is-visible
 
-        @if $nth
-            @for $i from 1 through $nth
-                &:nth-of-type(#{$i})
-                    $delay-count: $i * $delay
-                    +keyframesSetOne(fadein-sc-n#{$i}, #{$duration}s, #{$delay-count}s)
-                    +keyframes(fadein-sc-n#{$i})
+        opacity: 1
 
-                    from
-                        opacity: 0
+        // transform: translateY(0)
 
-                        @if $dir == hor
-                            transform: translateX($pos)
+        @if $dir == hor
+            transform: translateX(0)
 
-                        @elseif $dir == ver
-                            transform: translateY($pos)
-
-                    to
-                        opacity: 1
-
-                        @if $dir == hor
-                            transform: translateX(0)
-
-                        @elseif $dir == ver
-                            transform: translateY(0)
-
-        @else
-            +keyframesSetOne(fadein-sc-#{$dir}, #{$duration}s, 0)
-            
-            +keyframes(fadein-sc-#{$dir})
-                from
-                    opacity: 0
-
-                    @if $dir == hor
-                        transform: translateX($pos)
-
-                    @elseif $type == ver
-                        transform: translateY($pos)
-
-                to
-                    opacity: 1
-
-                    @if $dir == hor
-                        transform: translateX(0)
-
-                    @elseif $type == ver
-                        transform: translateY(0)
+        @else if $dir == ver
+            transform: translateY(0)
 
 
 
