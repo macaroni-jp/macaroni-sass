@@ -4,7 +4,7 @@
 
 // ********************* view size
 
-=area($ms: auto, $ms-sp: auto, $type: fix)
+=area($ms: auto, $ms-sp: $_side-margin-sp, $type: fix)
     //レスポンシブ設定。#containerに設定する。HTMLの設定 → meta(name='viewport' content='width=device-width')
     //ウインドウを一定以上縮小させた場合やタブレットの縦横でレイアウトを変更させない場合に使用。
     @if $type != min
@@ -80,9 +80,6 @@
             margin-left: auto
             margin-right: auto
 
-=min
-    +area($type: min)
-
 =fix
     +area($type: fix)
 
@@ -90,13 +87,13 @@
     +area($ms-sp: 0, $type: fix)
 
 =flex
-    +area($ms: $_side-margin, $ms-sp: $_side-margin-sp, $type: flex)
+    +area($ms: $_side-margin, $type: flex)
 
 =flex-sp-ms0
     +area($ms: $_side-margin, $ms-sp: 0, $type: flex)
 
 =liq
-    +area($ms: $_side-margin, $ms-sp: $_side-margin-sp, $type: liq)
+    +area($ms: $_side-margin, $type: liq)
 
 =liq-sp-ms0
     +area($ms: $_side-margin, $ms-sp: 0, $type: liq)
