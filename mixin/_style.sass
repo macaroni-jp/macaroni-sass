@@ -311,17 +311,17 @@
 
     @if $arrow
 
-        // @if $arrow == left
-        padding-left: 2rem
-
-        &:before
-            left: 0.8rem
-
         @if $arrow == right
             padding-right: 2rem
 
             &:before
                 right: 1rem
+
+        @else
+            padding-left: 2rem
+
+            &:before
+                left: 0.8rem
 
 // preset
 
