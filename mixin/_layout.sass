@@ -357,12 +357,10 @@
 // ********************* float
 
 =float-l
-    float: left
+    float: none
 
-    +max-width($_small-break)
-        float: none
-        // margin-left: 0
-        // margin-right: 0
+    +min-width($_small-break + 1px)
+        float: left
 
 =float-r($del: false)
     float: right
