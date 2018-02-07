@@ -341,10 +341,11 @@
     height: auto
 
 =fit-sp
+    width: 100%
     height: auto
 
-    +max-width($_small-break)
-        width: 100%
+    +min-width($_small-break + 1px)
+        width: auto
 
 =fit-max
     max-width: 100%
@@ -362,41 +363,11 @@
     +min-width($_small-break + 1px)
         float: left
 
-=float-r($del: false)
-    float: right
+=float-r
+    float: none
 
-    @if $del
-        +max-width($_small-break)
-            display: none
-    @else
-        +max-width($_small-break)
-            float: none
-            // margin-left: 0
-            // margin-right: 0
-
-// mobile first
-// =floatL
-//     float: none
-
-//     +max-width($_small-break)
-//         margin-left: 0
-//         margin-right: 0
-
-//     +min-width($_small-break + 1px)
-//         float: left
-
-// =floatR($del: false)
-//     @if $del
-//         display: none
-//     @else
-//         float: none
-
-//     +max-width($_small-break)
-//         margin-left: 0
-//         margin-right: 0
-
-//     +min-width($_small-break + 1px)
-//         float: right
+    +min-width($_small-break + 1px)
+        float: right
 
 // ********************* clear
 
