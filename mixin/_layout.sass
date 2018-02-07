@@ -425,10 +425,10 @@
     position: fixed
 
 =pof-pc
-    position: fixed
+    position: static
 
-    +max-width($_small-break)
-        position: static
+    +min-width($_small-break + 1px)
+        position: fixed
 
 =poa-center
     position: absolute
