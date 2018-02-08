@@ -307,16 +307,16 @@
         display: none
 
 =only-sp
-    display: none
+    display: block
 
-    +max-width($_small-break)
-        display: block
+    +min-width($_small-break + 1px)
+        display: none
 
 =only-sp-i
-    display: none
+    display: inline-block
 
-    +max-width($_small-break)
-        display: inline-block
+    +min-width($_small-break + 1px)
+        display: none
 
 // ********************* overflow
 
