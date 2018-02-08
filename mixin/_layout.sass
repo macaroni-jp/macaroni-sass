@@ -285,16 +285,16 @@
 // ********************* display
 
 =bl
-    display: block
-
-    +max-width($_small-break)
-        display: inline
-
-=bl-sp
     display: inline
 
-    +max-width($_small-break)
+    +min-width($_small-break + 1px)
         display: block
+
+=bl-sp
+    display: block
+
+    +min-width($_small-break + 1px)
+        display: inline
 
 =bl-all
     display: block
