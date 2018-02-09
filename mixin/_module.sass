@@ -244,7 +244,7 @@
             border-bottom: $bdsize solid $bdcolor
             border-right: $bdsize solid $bdcolor
 
-    @elseif $type == bg
+    @else if $type == bg
 
         thead
             th
@@ -254,7 +254,7 @@
             tr:nth-child(even)
                 background-color: $bg
 
-    @elseif $type == bdn
+    @else if $type == bdn
         border: none
 
         th, td

@@ -57,7 +57,7 @@
             left: 0
             bottom: 0
 
-    @elseif $type == right
+    @else if $type == right
         padding-right: 1em
 
         &:before
@@ -66,7 +66,7 @@
             right: 0.33em
             bottom: 0
 
-    @elseif $type == upper
+    @else if $type == upper
         padding-left: 1em
 
         &:before
@@ -74,7 +74,7 @@
             top: 45%
             left: 0
 
-    @elseif $type == lower
+    @else if $type == lower
         padding-left: 1em
 
         &:before
@@ -82,7 +82,7 @@
             bottom: 40%
             left: 0
 
-    @elseif $type == back
+    @else if $type == back
         padding-left: 1em
 
         &:before
@@ -132,7 +132,7 @@
         &:before
             border-color: #fff
 
-    @elseif $color == $_gry
+    @else if $color == $_gry
         &:before
             border-color: $_gry
 
@@ -170,21 +170,21 @@
             top: ($size * -2)
             margin: auto
 
-        @elseif $pos == right
+        @else if $pos == right
             border-left: $size solid #{$color}
             top: 0
             bottom: 0
             right: ($size * -2)
             margin: auto
 
-        @elseif $pos == bottom
+        @else if $pos == bottom
             border-top: $size solid #{$color}
             left: 0
             right: 0
             bottom: ($size * -2)
             margin: auto
 
-        @elseif $pos == left
+        @else if $pos == left
             border-right: $size solid #{$color}
             top: 0
             bottom: 0
@@ -199,13 +199,13 @@
                 @if $pos == top
                     border-bottom: $size solid nth($colors_var, $index_key)
 
-                @elseif $pos == right
+                @else if $pos == right
                     border-left: $size solid nth($colors_var, $index_key)
 
-                @elseif $pos == bottom
+                @else if $pos == bottom
                     border-top: $size solid nth($colors_var, $index_key)
 
-                @elseif $pos == left
+                @else if $pos == left
                     border-right: $size solid nth($colors_var, $index_key)
 
 
@@ -264,7 +264,7 @@
             &:before
                 border-color: $_btn-pri-color
 
-    @elseif $type == sec
+    @else if $type == sec
         +pre-btn-sec
 
         @if $border
@@ -274,13 +274,13 @@
             &:before
                 border-color: $_btn-seco-color
 
-    @elseif $type == wht
+    @else if $type == wht
         +pre-btn-wht
 
         @if $border
             border: $_btn-bdsize solid $_lgry
 
-    @elseif $type == blk
+    @else if $type == blk
         +pre-btn-blk
 
         @if $border
