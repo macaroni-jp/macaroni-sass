@@ -236,13 +236,13 @@
 // ********************* table
 
 =table($type: bd, $bg: $_table-bgcolor, $bdcolor: $_table-bdcolor, $bdsize: $_table-bdsize, $bgcolor: $_table-bgcolor)
+    th, td
+        box-sizing: border-box
+
     @if $type == bd
-        border: $bdsize solid $bdcolor
-        border-bottom: none
 
         th, td
-            border-bottom: $bdsize solid $bdcolor
-            border-right: $bdsize solid $bdcolor
+            border: $bdsize solid $bdcolor
 
     @else if $type == bg
 
@@ -254,11 +254,6 @@
             tr:nth-child(even)
                 background-color: $bg
 
-    @else if $type == bdn
-        border: none
-
-        th, td
-            border: none
 
 // ********************* youtube
 
