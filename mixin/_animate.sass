@@ -44,8 +44,7 @@
 =fadein-sc($dir: normal, $duration: 0.5, $delay: 0.1, $nth: null, $pos: 0)
     opacity: 0
     // $delay-count: ''
-    @each $prefix in $set_prefix
-        #{$prefix}transition: all #{$duration}s $_easing
+    transition: all #{$duration}s $_easing
 
     // transform: translateY($pos)
 
